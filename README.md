@@ -28,5 +28,5 @@ This kit uses Babel version 6. This version is more and better modularised than 
 Replace stupid TODO app with something using async REST, validation and localisation:
 
 * Add react-bootstrap
-* Add react-router
+* Add react-router and [react-router-redux](https://github.com/rackt/react-router-redux)
 * Add react-intl
