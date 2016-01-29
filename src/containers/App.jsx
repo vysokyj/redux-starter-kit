@@ -1,40 +1,30 @@
 import React, { Component, PropTypes } from "react";
-import { bindActionCreators } from "redux";
+import { Link } from "react-router"
 import { connect } from "react-redux";
-import Header from "../components/Header";
-import MainSection from "../components/MainSection";
-import * as TodoActions from "../actions/todos";
+import { routeActions } from "react-router-redux";
 
-class App extends Component {
-    render() {
-        const { todos, actions } = this.props;
-        return (
+
+function App({ push, children }) {
+    return (
+        <div>
+            <header>
+                Links:
+                {' '}
+                <Link to="/">Home</Link>
+                {' '}
+                <Link to="/todos">Todos</Link>
+                {' '}
+                <Link to="/address">Address</Link>
+            </header>
             <div>
-                <Header addTodo={actions.addTodo} />
-                <MainSection todos={todos} actions={actions} />
+                <button onClick={() => push('/foo')}>Go to /foo</button>
             </div>
-        )
-    }
-}
-
-App.propTypes = {
-    todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
-};
-
-function mapStateToProps(state) {
-    return {
-        todos: state.todos
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(TodoActions, dispatch)
-    }
+            <div style={{ marginTop: '1.5em' }}>{children}</div>
+        </div>
+    )
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    null,
+    routeActions
 )(App);
