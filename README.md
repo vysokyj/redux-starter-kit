@@ -1,16 +1,22 @@
 # redux-starter-kit
 
-My Redux starter kit
+*Do not use yet!!! Under development!!!*
 
-*Do not use - under development!!!*
+There are many starter kits for React and Redux.
+I crate one for my personal usage.
 
 ## Features
 
+* Excellent component hot reload by HMRE
+* Redux as Flux backend.
+* Only one webpack configuration file. Production build is invoked by -p parameter when calling webpack.
+
 ### Babel Compiler
 
-Used Babel 6. This version is more modularized.
+This kit uses Babel version 6. This version is more and better modularised than previous versions.
 
-
-## TODO
-
-Replace webpack-dev-server by middleware.
+| Feature                     | Description                                                                            |
+| ----------------------------| -------------------------------------------------------------------------------------- |
+| transform-decorators-legacy | Enable ES6 decorators                                                                  |
+| syntax-class-properties     | Enable ES6 class properties                                                            |
+| transform-class-properties  | Enable ES6 class properties                                                            |
