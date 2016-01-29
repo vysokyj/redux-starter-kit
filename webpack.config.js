@@ -3,7 +3,6 @@
 var webpack = require("webpack");
 var yargs = require("yargs");
 var pjson = require("./package.json");
-var UglifyJsPlugin = require("webpack").optimize.UglifyJsPlugin;
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 var args = yargs.alias("p", "production").argv;
@@ -71,7 +70,6 @@ var definePlugin = new webpack.DefinePlugin({
     APP_VERSION: JSON.stringify(pjson.version),
 });
 
-
 var htmlDevPlugin = new HtmlWebpackPlugin({
     title: pjson.name,
     filename: "index.html",
@@ -94,13 +92,11 @@ var htmlProPlugin = new HtmlWebpackPlugin({
     }
 });
 
-var uglifyPlugin = new UglifyJsPlugin({
+var uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
     compress: {
         warnings: false
     }
 });
-
-
 //TODO: Check OccurenceOrderPlugin functionality from Redux starter kit
 var occurenceOrderPlugin = new webpack.optimize.OccurenceOrderPlugin();
 var hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
@@ -136,7 +132,7 @@ var entry = dev ? [
 // output file
 var output = {
     //path: "./app",
-    path: __dirname + '/',
+    path: __dirname + '/public',
     filename: "bundle-" + pjson.version + ".js"
 };
 
