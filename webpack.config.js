@@ -17,7 +17,6 @@ console.log("Application: %s@%s", pjson.name, pjson.version);
 
 var jsxLoader = {
     test: /\.jsx$/,
-    //loaders: ["react-hot", "babel"]
     loader: "babel"
 };
 
@@ -25,7 +24,6 @@ var jsxLoader = {
 var es6Loader = {
     test: /\.js$/,
     exclude: /node_modules/,
-    //loaders: ["react-hot", "babel"]
     loader: "babel"
 };
 
@@ -102,30 +100,14 @@ var uglifyPlugin = new UglifyJsPlugin({
     }
 });
 
+
+//TODO: Check OccurenceOrderPlugin functionality from Redux starter kit
 var occurenceOrderPlugin = new webpack.optimize.OccurenceOrderPlugin();
 var hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
 var noErrorsPlugin =  new webpack.NoErrorsPlugin();
 
 // -----------------------------------------------------------------------------
-// Predefine webpack-dev-server
-
-var devServer = {
-    contentBase: "./app",
-    watch: "./src",
-    port: 8080,
-    proxy: {
-        "*": "http://localhost:3000"
-    }
-    // noInfo: false, //  --no-info option
-    // hot: true,
-    // inline: true,
-    // quiet: false,
-    // lazy: false,
-};
-
-// -----------------------------------------------------------------------------
 // Configure variables by environment
-
 
 
 var plugins = dev ? [
@@ -139,15 +121,17 @@ var plugins = dev ? [
     htmlProPlugin,
     definePlugin
 ];
-var devtool = dev ? "eval-source-map" : ""; // = sources map for Chrome
+//TODO: Check differences between eval-source-map and cheap-module-eval-source-map
+//var devtool = dev ? "eval-source-map" : ""; // = sources map for Chrome
+var devtool = dev ? "cheap-module-eval-source-map" : ""; // = sources map for Chrome
 var cache = dev;
 var debug = dev;
 // input file
-//var entry = "./src/index.js";
-var entry = [
+var entry = dev ? [
+    //"eventsource-polyfill", // necessary for hot reloading with IE
     "webpack-hot-middleware/client",
-    "./src/index.js"
-];
+    "./src/index"
+] : "./src/index.js";
 
 // output file
 var output = {
@@ -187,6 +171,5 @@ module.exports = {
     plugins: plugins,
     cache: cache,
     debug: debug,
-    devtool: devtool,
-    devServer: devServer
+    devtool: devtool
 };

@@ -9,3 +9,8 @@ My Redux starter kit
 ### Babel Compiler
 
 Used Babel 6. This version is more modularized.
+
+
+## TODO
+
+Replace webpack-dev-server by middleware.
