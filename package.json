@@ -54,13 +54,8 @@
     "babel-polyfill": "^6.3.14",
     "body-parser": "^1.14.2",
     "classnames": "^2.2.3",
-    "ejs": "^2.4.1",
-    "ejs-mate": "^2.3.0",
     "express": "^4.13.4",
     "isomorphic-fetch": "^2.2.1",
-    "pg": "^4.4.3",
-    "pg-hstore": "^2.3.2",
-    "pg-native": "^1.10.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.0.6",
@@ -68,7 +63,6 @@
     "redux-logger": "^2.4.0",
     "redux-promise": "^0.5.1",
     "redux-thunk": "^1.0.3",
-    "sequelize": "^3.18.0",
     "todomvc-app-css": "^2.0.4"
   }
 }

@@ -8,7 +8,8 @@ I crate one for my personal usage.
 ## Features
 
 * Excellent component hot reload by HMRE
-* Redux as Flux backend.
+* React with Redux as Flux backend.
+* LESS support
 * Only one webpack configuration file. Production build is invoked by -p parameter when calling webpack.
 
 ### Babel Compiler
