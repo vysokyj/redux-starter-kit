@@ -7,7 +7,7 @@ I crate one for my personal usage.
 
 ## Features
 
-* Excellent component hot reload by HMRE
+* Excellent component based hot reload - HMRE
 * React with Redux as Flux backend.
 * LESS support
 * Only one webpack configuration file. Production build is invoked by -p parameter when calling webpack.
@@ -21,3 +21,12 @@ This kit uses Babel version 6. This version is more and better modularised than 
 | transform-decorators-legacy | Enable ES6 decorators                                                                  |
 | syntax-class-properties     | Enable ES6 class properties                                                            |
 | transform-class-properties  | Enable ES6 class properties                                                            |
+
+
+## TODO
+
+Replace stupid TODO app with something using async REST, validation and localisation:
+
+* Add react-bootstrap
+* Add react-router
+* Add react-intl

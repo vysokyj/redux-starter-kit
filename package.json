@@ -2,9 +2,8 @@
   "name": "redux-starter-kit",
   "version": "1.0.0",
   "description": "Redux starter kit",
-  "main": "index.js",
+  "main": "devServer.js",
   "scripts": {
-    "start-unused": "nodemon ./src/index.js --exec babel-node --presets es2015,stage-2",
     "start": "node devServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
