@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Header from "../components/Header";
-import MainSection from "../components/MainSection";
+import Header from "../components/TodoHeader";
+import MainSection from "../components/TodoMainSection";
 import * as TodoActions from "../actions/todos";
 
 class TodoPage extends Component {

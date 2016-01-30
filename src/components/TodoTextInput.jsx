@@ -2,6 +2,15 @@ import React, { Component, PropTypes } from "react";
 import classnames from "classnames";
 
 class TodoTextInput extends Component {
+
+    static propTypes = {
+        onSave: PropTypes.func.isRequired,
+        text: PropTypes.string,
+        placeholder: PropTypes.string,
+        editing: PropTypes.bool,
+        newTodo: PropTypes.bool
+    };
+
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -33,8 +42,9 @@ class TodoTextInput extends Component {
         return (
             <input className={
         classnames({
-          edit: this.props.editing,
-          "new-todo": this.props.newTodo
+          "edit": this.props.editing,
+          "new-todo": this.props.newTodo,
+          "form-control": true
         })}
                    type="text"
                    placeholder={this.props.placeholder}
@@ -46,13 +56,5 @@ class TodoTextInput extends Component {
         )
     }
 }
-
-TodoTextInput.propTypes = {
-    onSave: PropTypes.func.isRequired,
-    text: PropTypes.string,
-    placeholder: PropTypes.string,
-    editing: PropTypes.bool,
-    newTodo: PropTypes.bool
-};
 
 export default TodoTextInput;

@@ -8,7 +8,16 @@ const FILTER_TITLES = {
     [SHOW_COMPLETED]: "Completed"
 };
 
-class Footer extends Component {
+class TodoFooter extends Component {
+
+    static propTypes = {
+        completedCount: PropTypes.number.isRequired,
+        activeCount: PropTypes.number.isRequired,
+        filter: PropTypes.string.isRequired,
+        onClearCompleted: PropTypes.func.isRequired,
+        onShow: PropTypes.func.isRequired
+    };
+
     renderTodoCount() {
         const { activeCount } = this.props;
         const itemWord = activeCount === 1 ? "item" : "items";
@@ -25,11 +34,15 @@ class Footer extends Component {
         const { filter: selectedFilter, onShow } = this.props;
 
         return (
-            <a className={classnames({ selected: filter === selectedFilter })}
+            <button key={filter} className={classnames({
+                selected: filter === selectedFilter,
+                "btn": true,
+                "btn-primary": true
+                })}
                style={{ cursor: "pointer" }}
                onClick={() => onShow(filter)}>
                 {title}
-            </a>
+            </button>
         )
     }
 
@@ -37,7 +50,7 @@ class Footer extends Component {
         const { completedCount, onClearCompleted } = this.props;
         if (completedCount > 0) {
             return (
-                <button className="clear-completed"
+                <button className="clear-completed btn btn-danger"
                         onClick={onClearCompleted} >
                     Clear completed
                 </button>
@@ -47,27 +60,17 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer className="footer">
-                {this.renderTodoCount()}
-                <ul className="filters">
+            <div className="footer">
+                <p>{this.renderTodoCount()}</p>
+                <div className="btn-group">
                     {[ SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED ].map(filter =>
-                        <li key={filter}>
-                            {this.renderFilterLink(filter)}
-                        </li>
+                        this.renderFilterLink(filter)
                     )}
-                </ul>
-                {this.renderClearButton()}
-            </footer>
+                    {this.renderClearButton()}
+                </div>
+            </div>
         )
     }
 }
 
-Footer.propTypes = {
-    completedCount: PropTypes.number.isRequired,
-    activeCount: PropTypes.number.isRequired,
-    filter: PropTypes.string.isRequired,
-    onClearCompleted: PropTypes.func.isRequired,
-    onShow: PropTypes.func.isRequired
-};
-
-export default Footer;
+export default TodoFooter;

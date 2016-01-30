@@ -35,16 +35,19 @@ class TodoItem extends Component {
             )
         } else {
             element = (
-                <div className="view">
+                <div className="view" style={{ height: 40 }}>
                     <input className="toggle"
+                           style={{ marginRight: 10 }}
                            type="checkbox"
                            checked={todo.completed}
                            onChange={() => completeTodo(todo.id)} />
                     <label onDoubleClick={this.handleDoubleClick.bind(this)}>
                         {todo.text}
                     </label>
-                    <button className="destroy"
-                            onClick={() => deleteTodo(todo.id)} />
+                    <button className="destroy btn btn-warning"
+                            style={{float: "right"}}
+                            onClick={() => deleteTodo(todo.id)}
+                            >X</button>
                 </div>
             )
         }

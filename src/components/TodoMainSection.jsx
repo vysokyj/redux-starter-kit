@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import TodoItem from "./TodoItem";
-import Footer from "./Footer";
+import Footer from "./TodoFooter";
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../constants/TodoFilters";
 
 const TODO_FILTERS = {
@@ -9,7 +9,13 @@ const TODO_FILTERS = {
     [SHOW_COMPLETED]: todo => todo.completed
 };
 
-class MainSection extends Component {
+class TodoMainSection extends Component {
+
+    static propTypes = {
+        todos: PropTypes.array.isRequired,
+        actions: PropTypes.object.isRequired
+    };
+
     constructor(props, context) {
         super(props, context);
         this.state = { filter: SHOW_ALL };
@@ -28,6 +34,7 @@ class MainSection extends Component {
         if (todos.length > 0) {
             return (
                 <input className="toggle-all"
+                       style={{ height: 40 }}
                        type="checkbox"
                        checked={completedCount === todos.length}
                        onChange={actions.completeAll} />
@@ -64,7 +71,7 @@ class MainSection extends Component {
         return (
             <section className="main">
                 {this.renderToggleAll(completedCount)}
-                <ul className="todo-list">
+                <ul className="todo-list list-unstyled">
                     {filteredTodos.map(todo =>
                         <TodoItem key={todo.id} todo={todo} {...actions} />
                     )}
@@ -75,9 +82,4 @@ class MainSection extends Component {
     }
 }
 
-MainSection.propTypes = {
-    todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
-};
-
-export default MainSection;
+export default TodoMainSection;
