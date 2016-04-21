@@ -22,24 +22,24 @@ class TodoMainSection extends Component {
     }
 
     handleClearCompleted() {
-        this.props.actions.clearCompleted()
+        this.props.actions.clearCompleted();
     }
 
     handleShow(filter) {
-        this.setState({ filter })
+        this.setState({ filter });
     }
 
     renderToggleAll(completedCount) {
         const { todos, actions } = this.props;
-        if (todos.length > 0) {
+        if (todos.length > 0)
             return (
                 <input className="toggle-all"
                        style={{ height: 40 }}
                        type="checkbox"
                        checked={completedCount === todos.length}
                        onChange={actions.completeAll} />
-            )
-        }
+            );
+
     }
 
     renderFooter(completedCount) {
@@ -47,15 +47,14 @@ class TodoMainSection extends Component {
         const { filter } = this.state;
         const activeCount = todos.length - completedCount;
 
-        if (todos.length) {
+        if (todos.length)
             return (
                 <Footer completedCount={completedCount}
                         activeCount={activeCount}
                         filter={filter}
                         onClearCompleted={this.handleClearCompleted.bind(this)}
                         onShow={this.handleShow.bind(this)} />
-            )
-        }
+            );
     }
 
     render() {
@@ -78,7 +77,7 @@ class TodoMainSection extends Component {
                 </ul>
                 {this.renderFooter(completedCount)}
             </section>
-        )
+        );
     }
 }
 

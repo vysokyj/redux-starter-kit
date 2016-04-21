@@ -24,38 +24,37 @@ class TodoFooter extends Component {
 
         return (
             <span className="todo-count">
-        <strong>{activeCount || "No"}</strong> {itemWord} left
-      </span>
-        )
+            <strong>{activeCount || "No"}</strong> {itemWord} left
+            </span>
+        );
     }
 
     renderFilterLink(filter) {
         const title = FILTER_TITLES[filter];
         const { filter: selectedFilter, onShow } = this.props;
-
+        
         return (
             <button key={filter} className={classnames({
                 selected: filter === selectedFilter,
                 "btn": true,
                 "btn-primary": true
-                })}
+            })}
                style={{ cursor: "pointer" }}
                onClick={() => onShow(filter)}>
                 {title}
             </button>
-        )
+        );
     }
 
     renderClearButton() {
         const { completedCount, onClearCompleted } = this.props;
-        if (completedCount > 0) {
+        if (completedCount > 0)
             return (
                 <button className="clear-completed btn btn-danger"
                         onClick={onClearCompleted} >
                     Clear completed
                 </button>
-            )
-        }
+            );
     }
 
     render() {
@@ -69,7 +68,7 @@ class TodoFooter extends Component {
                     {this.renderClearButton()}
                 </div>
             </div>
-        )
+        );
     }
 }
 

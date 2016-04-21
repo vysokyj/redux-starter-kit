@@ -22,29 +22,25 @@ class TodoTextInput extends Component {
         const text = e.target.value.trim();
         if (e.which === 13) {
             this.props.onSave(text);
-            if (this.props.newTodo) {
-                this.setState({ text: "" });
-            }
+            if (this.props.newTodo) this.setState({ text: "" });
         }
     }
 
     handleChange(e) {
-        this.setState({ text: e.target.value })
+        this.setState({ text: e.target.value });
     }
 
     handleBlur(e) {
-        if (!this.props.newTodo) {
-            this.props.onSave(e.target.value)
-        }
+        if (!this.props.newTodo) this.props.onSave(e.target.value);
     }
 
     render() {
         return (
             <input className={
         classnames({
-          "edit": this.props.editing,
-          "new-todo": this.props.newTodo,
-          "form-control": true
+            "edit": this.props.editing,
+            "new-todo": this.props.newTodo,
+            "form-control": true
         })}
                    type="text"
                    placeholder={this.props.placeholder}
@@ -53,7 +49,7 @@ class TodoTextInput extends Component {
                    onBlur={this.handleBlur.bind(this)}
                    onChange={this.handleChange.bind(this)}
                    onKeyDown={this.handleSubmit.bind(this)} />
-        )
+        );
     }
 }
 

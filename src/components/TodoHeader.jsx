@@ -8,9 +8,7 @@ class TodoHeader extends Component {
     };
 
     handleSave(text) {
-        if (text.length !== 0) {
-            this.props.addTodo(text);
-        }
+        if (text.length !== 0) this.props.addTodo(text);
     }
 
     render() {
@@ -21,7 +19,7 @@ class TodoHeader extends Component {
                                onSave={this.handleSave.bind(this)}
                                placeholder="What needs to be done?" />
             </div>
-        )
+        );
     }
 }
 
