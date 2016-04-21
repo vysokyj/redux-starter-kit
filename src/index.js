@@ -13,7 +13,7 @@ import HomePage from "./containers/HomePage";
 import TodoPage from "./containers/TodoPage";
 import AddressPage from "./containers/AddressPage";
 import rootReducer from "./reducers";
-import "bootstrap-less/bootstrap/bootstrap.less";
+import "./styles.scss";
 
 const logger = createLogger();
 // Sync dispatched route actions to the history

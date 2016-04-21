@@ -9,12 +9,12 @@ I crate one for my personal usage.
 
 * Excellent component based hot reload - HMRE
 * React with Redux as Flux backend.
-* LESS support
+* SASS support
 * Only one webpack configuration file. Production build is invoked by -p parameter when calling webpack.
 
 ### Babel Compiler
 
-This kit uses Babel version 6. This version is more and better modularised than previous versions.
+This kit uses better modularized version 6 of the Babel compiler.
 
 | Feature                     | Description                                                                            |
 | ----------------------------| -------------------------------------------------------------------------------------- |

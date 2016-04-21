@@ -31,9 +31,9 @@ var cssLoader = {
     loader: "style!css"
 };
 
-var lessLoader = {
-    test: /\.less$/,
-    loader: "style!css!less"
+var sassLoader = {
+    test: /\.scss$/,
+    loader: "style!css!sass"
 };
 
 var woffLoader = {
@@ -156,7 +156,7 @@ module.exports = {
             jsxLoader,
             es6Loader,
             cssLoader,
-            lessLoader,
+            sassLoader,
             woffLoader,
             woff2Loader,
             ttfLoader,
