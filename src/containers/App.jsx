@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router"
 import { connect } from "react-redux";
-import { routeActions } from "react-router-redux";
+import { routerActions } from "react-router-redux";
 import { Navbar, Nav, NavDropdown, NavItem, MenuItem, Well } from "react-bootstrap";
 
 function App({ push, children }) {
@@ -47,5 +47,5 @@ function App({ push, children }) {
 
 export default connect(
     null,
-    routeActions
+    routerActions
 )(App);

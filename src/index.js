@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { Router, Route, browserHistory } from "react-router"
-import { syncHistory, routeReducer } from "react-router-redux"
+import { syncHistoryWithStore, routerMiddleware }  from "react-router-redux"
 import createLogger from "redux-logger";
 import promise from "redux-promise";
 import thunk from "redux-thunk";
@@ -17,9 +17,11 @@ import "bootstrap-less/bootstrap/bootstrap.less";
 
 const logger = createLogger();
 // Sync dispatched route actions to the history
-const routerHistory = syncHistory(browserHistory);
-const createStoreWithMiddleware = applyMiddleware(thunk, promise, routerHistory, logger)(createStore);
+
+const router = routerMiddleware(browserHistory);
+const createStoreWithMiddleware = applyMiddleware(thunk, promise, router, logger)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
+const history = syncHistoryWithStore(browserHistory, store);
 
 // Required for replaying actions from devtools to work
 //routerHistory.listenForReplays(store);
@@ -34,7 +36,7 @@ if (module.hot) {
 
 render(
     <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
             <Route path="/" component={App}>
                 <Route path="home" component={HomePage}/>
                 <Route path="todos" component={TodoPage}/>
