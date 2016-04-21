@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from "react";
 import { Link } from "react-router"
 import { connect } from "react-redux";
 import { routerActions } from "react-router-redux";
-import { Navbar, Nav, NavDropdown, NavItem, MenuItem, Well } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, NavItem, MenuItem } from "react-bootstrap";
 
 function App({ push, children }) {
     return (
         <div>
             <header>
-                <Navbar inverse>
+                <Navbar inverse staticTop>
                     <Navbar.Header>
                         <Navbar.Brand>
                             <a href="#">Example App</a>
@@ -36,10 +36,9 @@ function App({ push, children }) {
             </header>
             <article className="container" style={{ marginTop: "1.5em" }}>{children}</article>
             <footer>
-                <Well>
-                    Example App<br/>
-                    Copyright &copy; Jiri Vysoky, 2016
-                </Well>
+              <div className="container">
+                <p className="text-muted">Copyright &copy; Jiri Vysoky, 2016</p>
+              </div>
             </footer>
         </div>
     )

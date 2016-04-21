@@ -1,14 +1,17 @@
-import React from "react"
-import { connect } from "react-redux"
-import { increase, decrease } from "../actions/count"
+import React from "react";
+import { connect } from "react-redux";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { increase, decrease } from "../actions/count";
 
 function HomePage({ number, increase, decrease }) {
     return (
         <div>
-            Some state changes:
-            {number}
-            <button onClick={() => increase(1)}>Increase</button>
-            <button onClick={() => decrease(1)}>Decrease</button>
+            <h1>Simple Counter</h1>
+            <p>Some state changes: {number} </p>
+            <ButtonGroup>
+              <Button bsStyle="success" onClick={() => increase(1)}>Increase</Button>
+              <Button bsStyle="danger" onClick={() => decrease(1)}>Decrease</Button>
+            </ButtonGroup>
         </div>
     )
 }

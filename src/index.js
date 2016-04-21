@@ -3,7 +3,7 @@ import Immutable from "immutable";
 import { render } from "react-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import { Router, Route, browserHistory } from "react-router"
+import { Router, Route, IndexRoute, browserHistory } from "react-router"
 import { syncHistoryWithStore, routerMiddleware }  from "react-router-redux"
 import createLogger from "redux-logger";
 import promise from "redux-promise";
@@ -62,7 +62,7 @@ render(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
-                <Route path="home" component={HomePage}/>
+                <IndexRoute component={HomePage} />
                 <Route path="todos" component={TodoPage}/>
                 <Route path="address" component={AddressPage}/>
             </Route>
