@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { increase, decrease } from "../actions/count";
 
-function HomePage({ number, increase, decrease }) {
+function CountPage({ number, increase, decrease }) {
     return (
         <div>
             <h1>Simple Counter</h1>
@@ -17,6 +17,6 @@ function HomePage({ number, increase, decrease }) {
 }
 
 export default connect(
-    state => ({ number: state.count.number }),
+    state => ({ number: state.getIn(["count", "number"])}),
     { increase, decrease }
-)(HomePage)
+)(CountPage)

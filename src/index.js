@@ -10,7 +10,7 @@ import promise from "redux-promise";
 import thunk from "redux-thunk";
 
 import App from "./containers/App";
-import HomePage from "./containers/HomePage";
+import CountPage from "./containers/CountPage";
 import TodoPage from "./containers/TodoPage";
 import AddressPage from "./containers/AddressPage";
 import rootReducer from "./reducers";
@@ -62,7 +62,7 @@ render(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
-                <IndexRoute component={HomePage} />
+                <IndexRoute component={CountPage} />
                 <Route path="todos" component={TodoPage}/>
                 <Route path="address" component={AddressPage}/>
             </Route>

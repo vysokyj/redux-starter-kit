@@ -12,7 +12,7 @@ const TODO_FILTERS = {
 class TodoMainSection extends Component {
 
     static propTypes = {
-        todos: PropTypes.array.isRequired,
+        todos: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired
     };
 

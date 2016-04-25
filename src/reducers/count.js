@@ -5,21 +5,12 @@ const initialState = Immutable.fromJS({
     number: 1
 });
 
-function increase(state) {
-  return state.set("number", state.get("number") + action.amount);
-}
-
-function decrease(state) {
-  return state.set("number", state.get("number") - action.amount);
-}
-
 export default function update(state = initialState, action) {
-    return state
-    switch (action.typy) {
+    switch (action.type) {
         case INCREASE:
-            return increase(state);
+            return state.update("number", (number) => number + action.amount);
         case DECREASE:
-            return decrease(state);
+            return state.update("number", (number) => number - action.amount);
         default:
             return state;
     }
