@@ -17,6 +17,6 @@ function CountPage({ number, increase, decrease }) {
 }
 
 export default connect(
-    state => ({ number: state.getIn(["count", "number"])}),
+    state => ({ number: state.count.number }),
     { increase, decrease }
 )(CountPage)

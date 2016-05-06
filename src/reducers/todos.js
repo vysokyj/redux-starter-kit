@@ -1,4 +1,3 @@
-import Immutable from "immutable";
 import {
     ADD_TODO,
     DELETE_TODO,
@@ -7,38 +6,49 @@ import {
     COMPLETE_ALL,
     CLEAR_COMPLETED
 } from "../constants/ActionTypes"
-import Todo from "../model/Todo";
 
-const initialState = Immutable.fromJS([]);
+const initialState = [
+    {
+        text: "Use Redux",
+        completed: false,
+        id: 0
+    }
+];
 
 export default function todos(state = initialState, action) {
     switch (action.type) {
         case ADD_TODO:
-            return state.insert(0, new Todo({
-                id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-                completed: false,
-                text: action.text
-            }));
+            return [
+                {
+                    id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+                    completed: false,
+                    text: action.text
+                },
+                ...state
+            ];
 
         case DELETE_TODO:
-            return state.filter((todo) => todo.id !== action.id);
+            return state.filter(todo =>
+                todo.id !== action.id
+            );
 
         case EDIT_TODO:
-            return state.update(
-              list.findIndex((todo) => todo.id === action.id),
-              (todo) => todo = new Todo(action)
+            return state.map(todo =>
+                todo.id === action.id ?
+                    { ...todo, text: action.text } : todo
             );
 
         case COMPLETE_TODO:
             return state.map(todo =>
                 todo.id === action.id ?
-                    todo.set("completed", !todo.get("completed")) :
-                    todo
+                    { ...todo, completed: !todo.completed } : todo
             );
 
         case COMPLETE_ALL:
             const areAllMarked = state.every(todo => todo.completed)
-            return state.map(todo => todo.set("completed", !areAllMarked));
+            return state.map(todo => { 
+              return { ...todo, completed: !areAllMarked }
+            });
 
         case CLEAR_COMPLETED:
             return state.filter(todo => todo.completed === false)

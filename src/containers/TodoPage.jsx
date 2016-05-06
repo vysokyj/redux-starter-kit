@@ -5,10 +5,20 @@ import Header from "../components/TodoHeader";
 import MainSection from "../components/TodoMainSection";
 import * as TodoActions from "../actions/todos";
 
+@connect(
+  (state) => ({
+    todos: state.todos
+  }),
+  (dispatch) => ({
+    actions: bindActionCreators(TodoActions, dispatch)
+  })
+)
 class TodoPage extends Component {
 
     static propTypes = {
-        addTodo: PropTypes.func.isRequired
+      todos: PropTypes.array.isRequired,
+      actions: PropTypes.object.isRequired,
+      addTodo: PropTypes.func.isRequired
     };
 
     render() {
@@ -22,24 +32,4 @@ class TodoPage extends Component {
     }
 }
 
-TodoPage.propTypes = {
-    todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
-};
-
-function mapStateToProps(state) {
-    return {
-        todos: state.get("todos")
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(TodoActions, dispatch)
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TodoPage);
+export default TodoPage;

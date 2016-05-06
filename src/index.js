@@ -1,51 +1,24 @@
-import React from "react";
-import Immutable from "immutable";
-import { render } from "react-dom";
-import { applyMiddleware, createStore } from "redux";
-import { Provider } from "react-redux";
-import { Router, Route, IndexRoute, browserHistory } from "react-router"
-import { syncHistoryWithStore, routerMiddleware }  from "react-router-redux"
+import { applyMiddleware, createStore, combineReducers } from "redux";
+import { browserHistory } from "react-router"
+import { syncHistoryWithStore, routerReducer, routerMiddleware }  from "react-router-redux"
 import createLogger from "redux-logger";
 import promise from "redux-promise";
 import thunk from "redux-thunk";
+import reducers from "./reducers";
+import { createRouter } from "./containers";
 
-import App from "./containers/App";
-import CountPage from "./containers/CountPage";
-import TodoPage from "./containers/TodoPage";
-import AddressPage from "./containers/AddressPage";
-import rootReducer from "./reducers";
 import "./styles.scss";
 
-const logger = createLogger({
-    stateTransformer: state => state.toJS()
+const rootReducer = combineReducers({
+    ...reducers,
+    routing: routerReducer
 });
-// Sync dispatched route actions to the history
 
-const createSelectLocationState = () => {
-  let prevRoutingState, prevRoutingStateJS;
-  return (state) => {
-    const routingState = state.get('routing'); // or state.routing
-
-    if (typeof prevRoutingState === 'undefined' || prevRoutingState !== routingState) {
-      prevRoutingState = routingState;
-      prevRoutingStateJS = routingState.toJS();
-    }
-
-    return prevRoutingStateJS;
-  };
-};
-
-const initialState = Immutable.Map();
+const logger = createLogger();
 const router = routerMiddleware(browserHistory);
 const createStoreWithMiddleware = applyMiddleware(thunk, promise, router, logger)(createStore);
-const store = createStoreWithMiddleware(rootReducer, initialState);
-
-// ract-router-redux expected state.routing as plain JS, this method override defaultSelectLocationState
-// also used custom immutable routing reducer
-const immutableSelectLocationState = state => state.get("routing").toJS();
-const history = syncHistoryWithStore(browserHistory, store, {
-    selectLocationState: immutableSelectLocationState
-});
+const store = createStoreWithMiddleware(rootReducer);
+const history = syncHistoryWithStore(browserHistory, store);
 
 // Required for replaying actions from devtools to work
 //history.listenForReplays(store);
@@ -58,15 +31,4 @@ if (module.hot) {
     });
 }
 
-render(
-    <Provider store={store}>
-        <Router history={history}>
-            <Route path="/" component={App}>
-                <IndexRoute component={CountPage} />
-                <Route path="todos" component={TodoPage}/>
-                <Route path="address" component={AddressPage}/>
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById("root")
-);
+createRouter(store, history);

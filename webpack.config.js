@@ -11,6 +11,9 @@ var dev = (environment === "development");
 console.log("Environment: %s", environment);
 console.log("Application: %s@%s", pjson.name, pjson.version);
 
+// set environment for babel compiler
+process.env.BABEL_ENV = environment;
+
 // -----------------------------------------------------------------------------
 // Predefine loaders
 
@@ -68,6 +71,8 @@ var definePlugin = new webpack.DefinePlugin({
     ENVIRONMENT: JSON.stringify(environment),
     APP_NAME: JSON.stringify(pjson.name),
     APP_VERSION: JSON.stringify(pjson.version),
+    'process.env.NODE_ENV': JSON.stringify(environment),
+    'process.env.BABEL_ENV': JSON.stringify(environment)
 });
 
 var htmlDevPlugin = new HtmlWebpackPlugin({
@@ -125,7 +130,7 @@ var debug = dev;
 // input file
 var entry = dev ? [
     //"eventsource-polyfill", // necessary for hot reloading with IE
-    "webpack-hot-middleware/client",
+    "webpack-hot-middleware/client?reload=true",
     "./src/index"
 ] : "./src/index.js";
 

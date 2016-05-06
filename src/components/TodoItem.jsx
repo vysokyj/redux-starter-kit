@@ -1,8 +1,20 @@
 import React, { Component, PropTypes } from "react";
+import {
+    Button
+} from "react-bootstrap";
 import classnames from "classnames";
 import TodoTextInput from "./TodoTextInput";
 
 class TodoItem extends Component {
+
+    static propTypes = {
+        todo: PropTypes.object.isRequired,
+        editTodo: PropTypes.func.isRequired,
+        deleteTodo: PropTypes.func.isRequired,
+        completeTodo: PropTypes.func.isRequired
+    };
+
+
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -41,30 +53,23 @@ class TodoItem extends Component {
                     <label onDoubleClick={this.handleDoubleClick.bind(this)}>
                         {todo.text}
                     </label>
-                    <button className="destroy btn btn-warning"
+                    <Button bsSize="xsmall" bsStyle="warning"
                             style={{float: "right"}}
                             onClick={() => deleteTodo(todo.id)}
-                            >X</button>
+                            >X</Button>
                 </div>
             )
         }
 
         return (
             <li className={classnames({
-        completed: todo.completed,
-        editing: this.state.editing
-      })}>
+                completed: todo.completed,
+                editing: this.state.editing
+              })}>
                 {element}
             </li>
         )
     }
 }
-
-TodoItem.propTypes = {
-    todo: PropTypes.object.isRequired,
-    editTodo: PropTypes.func.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    completeTodo: PropTypes.func.isRequired
-};
 
 export default TodoItem;

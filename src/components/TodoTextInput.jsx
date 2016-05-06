@@ -37,11 +37,11 @@ class TodoTextInput extends Component {
     render() {
         return (
             <input className={
-        classnames({
-            "edit": this.props.editing,
-            "new-todo": this.props.newTodo,
-            "form-control": true
-        })}
+                    classnames({
+                        "edit": this.props.editing,
+                        "new-todo": this.props.newTodo,
+                        "form-control": true
+                    })}
                    type="text"
                    placeholder={this.props.placeholder}
                    autoFocus="true"
