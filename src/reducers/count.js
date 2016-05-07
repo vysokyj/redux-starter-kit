@@ -1,4 +1,4 @@
-import { INCREASE, DECREASE } from '../constants/ActionTypes'
+import { INCREASE, DECREASE } from "../constants/ActionTypes";
 
 const initialState = {
   number: 1
@@ -7,10 +7,10 @@ const initialState = {
 export default function update(state = initialState, action) {
   switch (action.type) {
     case INCREASE:
-    return {...state, number: state.number + action.amount};
+      return {...state, number: state.number + action.amount};
     case DECREASE:
-    return {...state, number: state.number - action.amount};
+      return {...state, number: state.number - action.amount};
     default:
-    return state;
+      return state;
   }
 }
