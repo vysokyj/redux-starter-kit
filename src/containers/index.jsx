@@ -8,14 +8,14 @@ import TodoPage from "./TodoPage";
 
 export function createRouter(store, history) {
   render(
-      <Provider store={store}>
-          <Router history={history}>
-              <Route path="/" component={App}>
-                  <IndexRoute component={CountPage} />
-                  <Route path="todos" component={TodoPage}/>
-              </Route>
-          </Router>
-      </Provider>,
-      document.getElementById("root")
+    <Provider store={store}>
+      <Router history={history}>
+        <Route path="/" component={App}>
+          <IndexRoute component={CountPage} />
+          <Route path="todos" component={TodoPage}/>
+        </Route>
+      </Router>
+    </Provider>,
+    document.getElementById("root")
   );
 }

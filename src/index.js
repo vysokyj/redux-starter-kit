@@ -10,8 +10,8 @@ import { createRouter } from "./containers";
 import "./styles.scss";
 
 const rootReducer = combineReducers({
-    ...reducers,
-    routing: routerReducer
+  ...reducers,
+  routing: routerReducer
 });
 
 const logger = createLogger();
@@ -24,11 +24,11 @@ const history = syncHistoryWithStore(browserHistory, store);
 //history.listenForReplays(store);
 
 if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept("./reducers", () => {
-        const nextReducer = require("./reducers");
-        store.replaceReducer(nextReducer);
-    });
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept("./reducers", () => {
+    const nextReducer = require("./reducers");
+    store.replaceReducer(nextReducer);
+  });
 }
 
 createRouter(store, history);

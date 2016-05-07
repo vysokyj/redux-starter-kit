@@ -14,22 +14,21 @@ import * as TodoActions from "../actions/todos";
   })
 )
 class TodoPage extends Component {
+  static propTypes = {
+    todos: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired,
+    addTodo: PropTypes.func.isRequired
+  };
 
-    static propTypes = {
-      todos: PropTypes.array.isRequired,
-      actions: PropTypes.object.isRequired,
-      addTodo: PropTypes.func.isRequired
-    };
-
-    render() {
-        const { todos, actions } = this.props;
-        return (
-            <div>
-                <Header addTodo={actions.addTodo} />
-                <MainSection todos={todos} actions={actions} />
-            </div>
-        )
-    }
+  render() {
+      const { todos, actions } = this.props;
+      return (
+          <div>
+              <Header addTodo={actions.addTodo} />
+              <MainSection todos={todos} actions={actions} />
+          </div>
+      )
+  }
 }
 
 export default TodoPage;
