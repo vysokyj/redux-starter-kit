@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { PropTypes } from "react";
+import PureRenderComponent from "./PureRenderComponent";
 import classnames from "classnames";
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../constants/TodoFilters";
 
@@ -8,7 +9,7 @@ const FILTER_TITLES = {
     [SHOW_COMPLETED]: "Completed"
 };
 
-class TodoFooter extends Component {
+class TodoFooter extends PureRenderComponent {
 
   static propTypes = {
     completedCount: PropTypes.number.isRequired,

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { PropTypes } from "react";
+import PureRenderComponent from "./PureRenderComponent";
 import TodoItem from "./TodoItem";
 import Footer from "./TodoFooter";
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../constants/TodoFilters";
@@ -9,7 +10,7 @@ const TODO_FILTERS = {
   [SHOW_COMPLETED]: todo => todo.completed
 };
 
-class TodoMainSection extends Component {
+class TodoMainSection extends PureRenderComponent {
 
   static propTypes = {
     todos: PropTypes.object.isRequired,

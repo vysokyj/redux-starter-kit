@@ -1,8 +1,9 @@
-import React, { PropTypes, Component } from "react";
+import React, { PropTypes } from "react";
+import PureRenderComponent from "./PureRenderComponent";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Header from "../components/TodoHeader";
-import MainSection from "../components/TodoMainSection";
+import Header from "./TodoHeader";
+import MainSection from "./TodoMainSection";
 import * as TodoActions from "../actions/todos";
 
 @connect(
@@ -13,7 +14,7 @@ import * as TodoActions from "../actions/todos";
     actions: bindActionCreators(TodoActions, dispatch)
   })
 )
-class TodoPage extends Component {
+class TodoPage extends PureRenderComponent {
   static propTypes = {
     todos: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,

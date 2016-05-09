@@ -1,7 +1,8 @@
-import React, { PropTypes, Component } from "react";
+import React, { PropTypes } from "react";
+import PureRenderComponent from "./PureRenderComponent";
 import TodoTextInput from "./TodoTextInput";
 
-class TodoHeader extends Component {
+class TodoHeader extends PureRenderComponent {
 
   static propTypes = {
     addTodo: PropTypes.func.isRequired

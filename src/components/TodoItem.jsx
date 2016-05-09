@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from "react";
+import React, { PropTypes } from "react";
+import PureRenderComponent from "./PureRenderComponent";
 import {
   Button
 } from "react-bootstrap";
 import classnames from "classnames";
 import TodoTextInput from "./TodoTextInput";
 
-class TodoItem extends Component {
+class TodoItem extends PureRenderComponent {
 
   static propTypes = {
     todo: PropTypes.object.isRequired,

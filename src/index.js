@@ -5,7 +5,7 @@ import createLogger from "redux-logger";
 import promise from "redux-promise";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
-import { createRouter } from "./containers";
+import { createRouter } from "./components";
 
 import "./styles.scss";
 
