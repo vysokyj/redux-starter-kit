@@ -1,7 +1,7 @@
-import React, { PropTypes } from "react";
+import React from "react";
 import PureRenderComponent from "./PureRenderComponent";
-import classnames from "classnames";
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../constants/TodoFilters";
+import classNames from "classnames";
+import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from "../constants/TodoFilters";
 
 const FILTER_TITLES = {
     [SHOW_ALL]: "All",
@@ -11,66 +11,66 @@ const FILTER_TITLES = {
 
 class TodoFooter extends PureRenderComponent {
 
-  static propTypes = {
-    completedCount: PropTypes.number.isRequired,
-    activeCount: PropTypes.number.isRequired,
-    filter: PropTypes.string.isRequired,
-    onClearCompleted: PropTypes.func.isRequired,
-    onShow: PropTypes.func.isRequired
-  };
+    static propTypes = {
+        completedCount: React.PropTypes.number.isRequired,
+        activeCount: React.PropTypes.number.isRequired,
+        filter: React.PropTypes.string.isRequired,
+        onClearCompleted: React.PropTypes.func.isRequired,
+        onShow: React.PropTypes.func.isRequired
+    };
 
-  renderTodoCount() {
-    const { activeCount } = this.props;
-    const itemWord = activeCount === 1 ? "item" : "items";
+    renderTodoCount() {
+        const {activeCount} = this.props;
+        const itemWord = activeCount === 1 ? "item" : "items";
 
-    return (
-      <span className="todo-count">
+        return (
+            <span className="todo-count">
         <strong>{activeCount || "No"}</strong> {itemWord} left
       </span>
-    );
-  }
+        );
+    }
 
-  renderFilterLink(filter) {
-    const title = FILTER_TITLES[filter];
-    const { filter: selectedFilter, onShow } = this.props;
+    renderFilterLink(filter) {
+        const title = FILTER_TITLES[filter];
+        const {filter: selectedFilter, onShow} = this.props;
 
-    return (
-      <button key={filter} className={classnames({
+        return (
+            <button key={filter} className={classNames({
         selected: filter === selectedFilter,
         "btn": true,
         "btn-primary": true
       })}
-      style={{ cursor: "pointer" }}
-      onClick={() => onShow(filter)}>
-      {title}
-      </button>
-    );
-  }
+                    style={{ cursor: "pointer" }}
+                    onClick={() => onShow(filter)}>
+                {title}
+            </button>
+        );
+    }
 
-  renderClearButton() {
-    const { completedCount, onClearCompleted } = this.props;
-    if (completedCount > 0)
-    return (
-      <button className="clear-completed btn btn-danger"
-        onClick={onClearCompleted} >
-        Clear completed
-      </button>
-    );
-  }
+    renderClearButton() {
+        const {completedCount, onClearCompleted} = this.props;
+        if (completedCount > 0)
+            return (
+                <button className="clear-completed btn btn-danger"
+                        onClick={onClearCompleted}>
+                    Clear completed
+                </button>
+            );
+    }
 
-  render() {
-    return (
-      <div className="footer">
-        <p>{this.renderTodoCount()}</p>
-        <div className="btn-group">
-          {[ SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED ].map(filter =>
-            this.renderFilterLink(filter)
-          )}
-          {this.renderClearButton()}
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="footer">
+                <p>{this.renderTodoCount()}</p>
+                <div className="btn-group">
+                    {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
+                        this.renderFilterLink(filter)
+                    )}
+                    {this.renderClearButton()}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default TodoFooter;

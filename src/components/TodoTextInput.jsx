@@ -1,58 +1,58 @@
-import React, { PropTypes } from "react";
+import React from "react";
 import PureRenderComponent from "./PureRenderComponent";
-import classnames from "classnames";
+import classNames from "classnames";
 
 class TodoTextInput extends PureRenderComponent {
 
-  static propTypes = {
-    onSave: PropTypes.func.isRequired,
-    text: PropTypes.string,
-    placeholder: PropTypes.string,
-    editing: PropTypes.bool,
-    newTodo: PropTypes.bool
-  };
-
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      text: this.props.text || ""
+    static propTypes = {
+        onSave: React.PropTypes.func.isRequired,
+        text: React.PropTypes.string,
+        placeholder: React.PropTypes.string,
+        editing: React.PropTypes.bool,
+        newTodo: React.PropTypes.bool
     };
-  }
 
-  handleSubmit(e) {
-    const text = e.target.value.trim();
-    if (e.which === 13) {
-      this.props.onSave(text);
-      if (this.props.newTodo) this.setState({ text: "" });
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            text: this.props.text || ""
+        };
     }
-  }
 
-  handleChange(e) {
-    this.setState({ text: e.target.value });
-  }
+    handleSubmit(e) {
+        const text = e.target.value.trim();
+        if (e.which === 13) {
+            this.props.onSave(text);
+            if (this.props.newTodo) this.setState({text: ""});
+        }
+    }
 
-  handleBlur(e) {
-    if (!this.props.newTodo) this.props.onSave(e.target.value);
-  }
+    handleChange(e) {
+        this.setState({text: e.target.value});
+    }
 
-  render() {
-    return (
-      <input
-          className={
-          classnames({
+    handleBlur(e) {
+        if (!this.props.newTodo) this.props.onSave(e.target.value);
+    }
+
+    render() {
+        return (
+            <input
+                className={
+          classNames({
             "edit": this.props.editing,
             "new-todo": this.props.newTodo,
             "form-control": true
           })}
-          type="text"
-          placeholder={this.props.placeholder}
-          autoFocus="true"
-          value={this.state.text}
-          onBlur={this.handleBlur.bind(this)}
-          onChange={this.handleChange.bind(this)}
-          onKeyDown={this.handleSubmit.bind(this)} />
-      );
+                type="text"
+                placeholder={this.props.placeholder}
+                autoFocus="true"
+                value={this.state.text}
+                onBlur={this.handleBlur.bind(this)}
+                onChange={this.handleChange.bind(this)}
+                onKeyDown={this.handleSubmit.bind(this)}/>
+        );
     }
-  }
+}
 
-  export default TodoTextInput;
+export default TodoTextInput;
