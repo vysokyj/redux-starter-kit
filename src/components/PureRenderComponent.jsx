@@ -5,10 +5,10 @@ var shallowCompare = require("react-addons-shallow-compare");
 class PureRenderComponent extends React.Component {
 
     constructor() {
+        super();
         this.props = null;
         this.state = null;
         this.refs = null;
-        super();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
