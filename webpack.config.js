@@ -19,7 +19,8 @@ process.env.BABEL_ENV = environment;
 
 var jsxLoader = {
     test: /\.jsx$/,
-    loader: "babel"
+    //loader: "babel"
+    loaders: dev ? ["react-hot", "babel"] : ["babel"]
 };
 
 // Process all local (src) JS with Babel - used ES6
