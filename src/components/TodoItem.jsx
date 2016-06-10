@@ -1,8 +1,21 @@
-import React, { Component, PropTypes } from "react";
+import React from "react";
+import PureRenderComponent from "./PureRenderComponent";
+import {
+    Button
+} from "react-bootstrap";
 import classnames from "classnames";
 import TodoTextInput from "./TodoTextInput";
 
-class TodoItem extends Component {
+class TodoItem extends PureRenderComponent {
+
+    static propTypes = {
+        todo: React.PropTypes.object.isRequired,
+        editTodo: React.PropTypes.func.isRequired,
+        deleteTodo: React.PropTypes.func.isRequired,
+        completeTodo: React.PropTypes.func.isRequired
+    };
+
+
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -11,40 +24,40 @@ class TodoItem extends Component {
     }
 
     handleDoubleClick() {
-        this.setState({ editing: true })
+        this.setState({editing: true});
     }
 
     handleSave(id, text) {
-        if (text.length === 0) {
-            this.props.deleteTodo(id);
-        } else {
-            this.props.editTodo(id, text);
-        }
-        this.setState({ editing: false });
+        if (text.length === 0) this.props.deleteTodo(id);
+        else this.props.editTodo(id, text);
+        this.setState({editing: false});
     }
 
     render() {
-        const { todo, completeTodo, deleteTodo } = this.props;
+        const {todo, completeTodo, deleteTodo} = this.props;
 
         let element;
         if (this.state.editing) {
             element = (
                 <TodoTextInput text={todo.text}
                                editing={this.state.editing}
-                               onSave={(text) => this.handleSave(todo.id, text)} />
+                               onSave={(text) => this.handleSave(todo.id, text)}/>
             )
         } else {
             element = (
-                <div className="view">
+                <div className="view" style={{ height: 40 }}>
                     <input className="toggle"
+                           style={{ marginRight: 10 }}
                            type="checkbox"
                            checked={todo.completed}
-                           onChange={() => completeTodo(todo.id)} />
+                           onChange={() => completeTodo(todo.id)}/>
                     <label onDoubleClick={this.handleDoubleClick.bind(this)}>
                         {todo.text}
                     </label>
-                    <button className="destroy"
-                            onClick={() => deleteTodo(todo.id)} />
+                    <Button bsSize="xsmall" bsStyle="warning"
+                            style={{float: "right"}}
+                            onClick={() => deleteTodo(todo.id)}
+                    >X</Button>
                 </div>
             )
         }
@@ -59,12 +72,5 @@ class TodoItem extends Component {
         )
     }
 }
-
-TodoItem.propTypes = {
-    todo: PropTypes.object.isRequired,
-    editTodo: PropTypes.func.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    completeTodo: PropTypes.func.isRequired
-};
 
 export default TodoItem;

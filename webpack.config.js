@@ -11,12 +11,19 @@ var dev = (environment === "development");
 console.log("Environment: %s", environment);
 console.log("Application: %s@%s", pjson.name, pjson.version);
 
+process.env.BABEL_ENV = environment;
+process.env.NODE_ENV = environment;
+
+var SOURCE_DIR = __dirname + "/src";
+var TARGET_DIR = __dirname + "/public";
+
 // -----------------------------------------------------------------------------
 // Predefine loaders
 
 var jsxLoader = {
     test: /\.jsx$/,
-    loader: "babel"
+    //loader: "babel"
+    loaders: dev ? ["react-hot", "babel"] : ["babel"]
 };
 
 // Process all local (src) JS with Babel - used ES6
@@ -31,9 +38,9 @@ var cssLoader = {
     loader: "style!css"
 };
 
-var lessLoader = {
-    test: /\.less$/,
-    loader: "style!css!less"
+var sassLoader = {
+    test: /\.scss$/,
+    loader: "style!css!sass"
 };
 
 var woffLoader = {
@@ -68,6 +75,8 @@ var definePlugin = new webpack.DefinePlugin({
     ENVIRONMENT: JSON.stringify(environment),
     APP_NAME: JSON.stringify(pjson.name),
     APP_VERSION: JSON.stringify(pjson.version),
+    'process.env.NODE_ENV': JSON.stringify(environment),
+    'process.env.BABEL_ENV': JSON.stringify(environment)
 });
 
 var htmlDevPlugin = new HtmlWebpackPlugin({
@@ -100,7 +109,7 @@ var uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
 //TODO: Check OccurenceOrderPlugin functionality from Redux starter kit
 var occurenceOrderPlugin = new webpack.optimize.OccurenceOrderPlugin();
 var hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
-var noErrorsPlugin =  new webpack.NoErrorsPlugin();
+var noErrorsPlugin = new webpack.NoErrorsPlugin();
 
 // -----------------------------------------------------------------------------
 // Configure variables by environment
@@ -122,17 +131,19 @@ var plugins = dev ? [
 var devtool = dev ? "cheap-module-eval-source-map" : ""; // = sources map for Chrome
 var cache = dev;
 var debug = dev;
-// input file
+
+// input
 var entry = dev ? [
     //"eventsource-polyfill", // necessary for hot reloading with IE
+    //"webpack-hot-middleware/client?reload=true", // reload when fails
     "webpack-hot-middleware/client",
-    "./src/index"
-] : "./src/index.js";
+    SOURCE_DIR + "/devIndex"
+] : SOURCE_DIR + "/index";
 
-// output file
+// output
 var output = {
     //path: "./app",
-    path: __dirname + '/public',
+    path: TARGET_DIR,
     filename: "bundle-" + pjson.version + ".js"
 };
 
@@ -156,7 +167,7 @@ module.exports = {
             jsxLoader,
             es6Loader,
             cssLoader,
-            lessLoader,
+            sassLoader,
             woffLoader,
             woff2Loader,
             ttfLoader,

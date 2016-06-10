@@ -1,3 +1,7 @@
+# JetBrains
+.idea
+*.iml
+
 # Directory for frontend application builds.
 public
 
