@@ -11,8 +11,11 @@ var dev = (environment === "development");
 console.log("Environment: %s", environment);
 console.log("Application: %s@%s", pjson.name, pjson.version);
 
-// set environment for babel compiler
 process.env.BABEL_ENV = environment;
+process.env.NODE_ENV = environment;
+
+var SOURCE_DIR = __dirname + "/src";
+var TARGET_DIR = __dirname + "/public";
 
 // -----------------------------------------------------------------------------
 // Predefine loaders
@@ -128,17 +131,19 @@ var plugins = dev ? [
 var devtool = dev ? "cheap-module-eval-source-map" : ""; // = sources map for Chrome
 var cache = dev;
 var debug = dev;
-// input file
+
+// input
 var entry = dev ? [
     //"eventsource-polyfill", // necessary for hot reloading with IE
-    "webpack-hot-middleware/client?reload=true",
-    "./src/index"
-] : "./src/index.js";
+    //"webpack-hot-middleware/client?reload=true", // reload when fails
+    "webpack-hot-middleware/client",
+    SOURCE_DIR + "/devIndex"
+] : SOURCE_DIR + "/index";
 
-// output file
+// output
 var output = {
     //path: "./app",
-    path: __dirname + '/public',
+    path: TARGET_DIR,
     filename: "bundle-" + pjson.version + ".js"
 };
 
