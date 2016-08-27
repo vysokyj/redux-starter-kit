@@ -11,22 +11,21 @@ import * as TodoActions from "../actions/todos";
         todos: state.todos
     }),
     (dispatch) => ({
-        actions: bindActionCreators(TodoActions, dispatch)
+        todoActions: bindActionCreators(TodoActions, dispatch)
     })
 )
 class TodoPage extends PureRenderComponent {
     static propTypes = {
         todos: React.PropTypes.array.isRequired,
-        actions: React.PropTypes.object.isRequired,
-        addTodo: React.PropTypes.func.isRequired
+        todoActions: React.PropTypes.object.isRequired
     };
 
     render() {
-        const {todos, actions} = this.props;
+        const {todos, todoActions} = this.props;
         return (
             <div>
-                <Header addTodo={actions.addTodo}/>
-                <MainSection todos={todos} actions={actions}/>
+                <Header addTodo={todoActions.addTodo}/>
+                <MainSection todos={todos} actions={todoActions}/>
             </div>
         )
     }

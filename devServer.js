@@ -14,7 +14,7 @@ app.use(require("webpack-dev-middleware")(compiler, {
 app.use(require("webpack-hot-middleware")(compiler));
 
 app.get("*", function (req, res, next) {
-    req.url = "index.html"; // index is builded by webpack
+    req.url = "index.html"; // file don't exist on disc in dev mode
     next("route");
 });
 

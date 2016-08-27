@@ -13,7 +13,7 @@ const TODO_FILTERS = {
 class TodoMainSection extends PureRenderComponent {
 
     static propTypes = {
-        todos: React.PropTypes.object.isRequired,
+        todos: React.PropTypes.array.isRequired,
         actions: React.PropTypes.object.isRequired
     };
 
