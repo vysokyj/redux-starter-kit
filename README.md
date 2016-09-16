@@ -1,9 +1,10 @@
 # redux-starter-kit
 
-*Do not use yet!!! Under development!!!*
+[![Build Status](https://secure.travis-ci.org/vysokyj/redux-starter-kit.svg?branch=master)](http://travis-ci.org/vysokyj/redux-starter-kit)
+[![Dependency Status](https://david-dm.org/vysokyj/redux-starter-kit.svg)](https://david-dm.org/vysokyj/redux-starter-kit)
 
 There are many starter kits for React and Redux.
-I crate one for my personal usage.
+I create one for my personal usage.
 
 ## Features
 
@@ -25,8 +26,5 @@ This kit uses better modularized version 6 of the Babel compiler.
 
 ## TODO
 
-Replace stupid TODO app with something using async REST, validation and localisation:
-
-* Add react-bootstrap
-* Add react-router and [react-router-redux](https://github.com/rackt/react-router-redux)
+* Replace stupid TODO app with something using async REST, validation and localisation
 * Add react-intl

@@ -3,7 +3,7 @@ import PureRenderComponent from "./PureRenderComponent";
 import {
     Button
 } from "react-bootstrap";
-import classnames from "classnames";
+import classNames from "classnames";
 import TodoTextInput from "./TodoTextInput";
 
 class TodoItem extends PureRenderComponent {
@@ -63,7 +63,7 @@ class TodoItem extends PureRenderComponent {
         }
 
         return (
-            <li className={classnames({
+            <li className={classNames({
         completed: todo.completed,
         editing: this.state.editing
       })}>
