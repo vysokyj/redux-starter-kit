@@ -13,7 +13,7 @@ class CountPage extends PureRenderComponent {
         const {increase, decrease, number} = this.props;
         return (
             <div>
-                <h1>Simple Counter DD</h1>
+                <h1>Simple Counter</h1>
                 <p>Some state changes: {number} </p>
                 <ButtonGroup>
                     <Button bsStyle="success" onClick={() => increase(1)}>Increase</Button>

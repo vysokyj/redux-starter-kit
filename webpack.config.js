@@ -22,7 +22,7 @@ var TARGET_DIR = __dirname + "/public";
 
 var jsxLoader = {
     test: /\.jsx$/,
-    loader: "babel"
+    loaders: dev ? ["react-hot", "babel"] : ["babel"]
 };
 
 // Process all local (src) JS with Babel - used ES6
