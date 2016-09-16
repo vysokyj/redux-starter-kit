@@ -2,8 +2,6 @@
 
 [![Build Status](https://secure.travis-ci.org/vysokyj/redux-starter-kit.svg?branch=master)](http://travis-ci.org/vysokyj/redux-starter-kit)
 [![Dependency Status](https://david-dm.org/vysokyj/redux-starter-kit.svg)](https://david-dm.org/vysokyj/redux-starter-kit)
-[![NPM Version](https://img.shields.io/npm/v/redux-starter-kit.svg)](https://npmjs.org/package/redux-starter-kit)
-[![NPM Downloads](https://img.shields.io/npm/dm/redux-starter-kit.svg)](https://npmjs.org/package/redux-starter-kit)
 
 *Do not use yet!!! Under development!!!*
 
