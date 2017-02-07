@@ -10,7 +10,6 @@
   "plugins": {
     "complete_strings": {},
     "node": {},
-    "lint": {},
     "requirejs": {},
     "modules": {},
     "es_modules": {},
