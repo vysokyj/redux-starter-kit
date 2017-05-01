@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 import PureRenderComponent from "./PureRenderComponent";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
@@ -16,8 +17,8 @@ import * as TodoActions from "../actions/todos";
 )
 class TodoPage extends PureRenderComponent {
     static propTypes = {
-        todos: React.PropTypes.array.isRequired,
-        todoActions: React.PropTypes.object.isRequired
+        todos: PropTypes.array.isRequired,
+        todoActions: PropTypes.object.isRequired
     };
 
     render() {

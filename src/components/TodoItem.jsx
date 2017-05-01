@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 import PureRenderComponent from "./PureRenderComponent";
 import {
     Button
@@ -9,10 +10,10 @@ import TodoTextInput from "./TodoTextInput";
 class TodoItem extends PureRenderComponent {
 
     static propTypes = {
-        todo: React.PropTypes.object.isRequired,
-        editTodo: React.PropTypes.func.isRequired,
-        deleteTodo: React.PropTypes.func.isRequired,
-        completeTodo: React.PropTypes.func.isRequired
+        todo: PropTypes.object.isRequired,
+        editTodo: PropTypes.func.isRequired,
+        deleteTodo: PropTypes.func.isRequired,
+        completeTodo: PropTypes.func.isRequired
     };
 
 

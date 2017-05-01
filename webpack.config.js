@@ -22,49 +22,49 @@ var TARGET_DIR = __dirname + "/public";
 
 var jsxLoader = {
     test: /\.jsx$/,
-    loaders: dev ? ["react-hot", "babel"] : ["babel"]
+    loaders: dev ? ["react-hot-loader", "babel-loader"] : ["babel-loader"]
 };
 
 // Process all local (src) JS with Babel - used ES6
 var es6Loader = {
     test: /\.js$/,
     exclude: /node_modules/,
-    loader: "babel"
+    loader: "babel-loader"
 };
 
 var cssLoader = {
     test: /\.css$/,
-    loader: "style!css"
+    loader: "style-loader!css-loader"
 };
 
 var sassLoader = {
     test: /\.scss$/,
-    loader: "style!css!sass"
+    loader: "style-loader!css-loader!sass-loader"
 };
 
 var woffLoader = {
     test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-    loader: "url?name=fonts/[name].[ext]&limit=10000&minetype=application/font-woff"
+    loader: "url-loader?name=fonts/[name].[ext]&limit=10000&minetype=application/font-woff"
 };
 
 var woff2Loader = {
     test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-    loader: "url?name=fonts/[name].[ext]&limit=10000&minetype=application/font-woff"
+    loader: "url-loader?name=fonts/[name].[ext]&limit=10000&minetype=application/font-woff"
 };
 
 var ttfLoader = {
     test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-    loader: "url?name=fonts/[name].[ext]&limit=10000&minetype=application/octet-stream"
+    loader: "url-loader?name=fonts/[name].[ext]&limit=10000&minetype=application/octet-stream"
 };
 
 var eotLoader = {
     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-    loader: "file?name=fonts/[name].[ext]"
+    loader: "file-loader?name=fonts/[name].[ext]"
 };
 
 var svgLoader = {
     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-    loader: "url?name=fonts/[name]&limit=10000&minetype=image/svg+xml"
+    loader: "url-loader?name=fonts/[name]&limit=10000&minetype=image/svg+xml"
 };
 
 // -----------------------------------------------------------------------------
@@ -106,21 +106,26 @@ var uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
     }
 });
 //TODO: Check OccurenceOrderPlugin functionality from Redux starter kit
-var occurenceOrderPlugin = new webpack.optimize.OccurenceOrderPlugin();
+var loaderOptionsPlugin = new webpack.LoaderOptionsPlugin({
+  debug: dev
+});
+var occurenceOrderPlugin = new webpack.optimize.OccurrenceOrderPlugin();
 var hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
-var noErrorsPlugin = new webpack.NoErrorsPlugin();
+var noErrorsPlugin = new webpack.NoEmitOnErrorsPlugin();
+
 
 // -----------------------------------------------------------------------------
 // Configure variables by environment
 
-
 var plugins = dev ? [
+    loaderOptionsPlugin,
     htmlDevPlugin,
     definePlugin,
     occurenceOrderPlugin,
     hotModuleReplacementPlugin,
     noErrorsPlugin
 ] : [
+    loaderOptionsPlugin,
     uglifyPlugin,
     htmlProPlugin,
     definePlugin
@@ -149,9 +154,14 @@ var output = {
 // how find module in require
 var resolve = {
     // try find files with these extensions
-    extensions: ["", ".js", ".jsx", ".es6"],
+    //extensions: ["", ".js", ".jsx", ".es6"],
+    extensions: [ ".js", ".jsx"],
+    //TODO: Removed from webpack 2
     // load modules from these directories
-    modulesDirectories: ["node_modules"]
+    //modulesDirectories: ["node_modules"]
+    modules: [
+      "node_modules"
+    ]
 };
 
 // -----------------------------------------------------------------------------
@@ -176,6 +186,5 @@ module.exports = {
     },
     plugins: plugins,
     cache: cache,
-    debug: debug,
     devtool: devtool
 };

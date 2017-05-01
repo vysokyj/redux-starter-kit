@@ -1,15 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types"
 import PureRenderComponent from "./PureRenderComponent";
 import classNames from "classnames";
 
 class TodoTextInput extends PureRenderComponent {
 
     static propTypes = {
-        onSave: React.PropTypes.func.isRequired,
-        text: React.PropTypes.string,
-        placeholder: React.PropTypes.string,
-        editing: React.PropTypes.bool,
-        newTodo: React.PropTypes.bool
+        onSave: PropTypes.func.isRequired,
+        text: PropTypes.string,
+        placeholder: PropTypes.string,
+        editing: PropTypes.bool,
+        newTodo: PropTypes.bool
     };
 
     constructor(props, context) {
