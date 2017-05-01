@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 import PureRenderComponent from "./PureRenderComponent";
 import classNames from "classnames";
 import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from "../constants/TodoFilters";
@@ -12,11 +13,11 @@ const FILTER_TITLES = {
 class TodoFooter extends PureRenderComponent {
 
     static propTypes = {
-        completedCount: React.PropTypes.number.isRequired,
-        activeCount: React.PropTypes.number.isRequired,
-        filter: React.PropTypes.string.isRequired,
-        onClearCompleted: React.PropTypes.func.isRequired,
-        onShow: React.PropTypes.func.isRequired
+        completedCount: PropTypes.number.isRequired,
+        activeCount: PropTypes.number.isRequired,
+        filter: PropTypes.string.isRequired,
+        onClearCompleted: PropTypes.func.isRequired,
+        onShow: PropTypes.func.isRequired
     };
 
     renderTodoCount() {

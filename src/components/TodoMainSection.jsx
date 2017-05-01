@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 import PureRenderComponent from "./PureRenderComponent";
 import TodoItem from "./TodoItem";
 import Footer from "./TodoFooter";
@@ -13,8 +14,8 @@ const TODO_FILTERS = {
 class TodoMainSection extends PureRenderComponent {
 
     static propTypes = {
-        todos: React.PropTypes.array.isRequired,
-        actions: React.PropTypes.object.isRequired
+        todos: PropTypes.array.isRequired,
+        actions: PropTypes.object.isRequired
     };
 
     constructor(props, context) {

@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types"
 import PureRenderComponent from "./PureRenderComponent";
 import TodoTextInput from "./TodoTextInput";
 
 class TodoHeader extends PureRenderComponent {
 
     static propTypes = {
-        addTodo: React.PropTypes.func.isRequired
+        addTodo: PropTypes.func.isRequired
     };
 
     handleSave(text) {
