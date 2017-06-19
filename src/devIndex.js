@@ -1,8 +1,8 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
-import { hashHistory } from "react-router";
-import { syncHistoryWithStore, routerReducer, routerMiddleware }  from "react-router-redux";
+import { routerReducer, routerMiddleware }  from "react-router-redux";
 import { intlReducer } from "react-intl-redux";
-import { createLogger } from 'redux-logger'
+import { createHashHistory } from "history";
+import { createLogger } from 'redux-logger';
 import promise from "redux-promise";
 import thunk from "redux-thunk"; // actions are functions
 import { createRouter } from "./components";
@@ -26,10 +26,11 @@ function initModuleHot() {
     });
 }
 
+const history = createHashHistory()
+const router = routerMiddleware(history);
 const logger = createLogger();
-const router = routerMiddleware(hashHistory);
 const createStoreWithMiddleware = applyMiddleware(thunk, promise, router, logger)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
-const history = syncHistoryWithStore(hashHistory, store);
+
 if (module.hot) initModuleHot();
 createRouter(store, history);
