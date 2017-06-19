@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import { routerReducer, routerMiddleware }  from "react-router-redux";
 import { intlReducer } from "react-intl-redux";
-import { createBrowerHistory } from "history";
+import { createBrowserHistory } from "history";
 import promise from "redux-promise";
 import thunk from "redux-thunk"; // actions are functions
 import { createRouter } from "./components";
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     router: routerReducer,
     intl: intlReducer
 });
-const history = createBrowerHistory()
+const history = createBrowserHistory()
 const router = routerMiddleware(history);
 const createStoreWithMiddleware = applyMiddleware(thunk, promise, router)(createStore);
 const store = createStoreWithMiddleware(rootReducer);

@@ -58,7 +58,7 @@ var ttfLoader = {
 };
 
 var eotLoader = {
-    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,TARGET_DIR
     loader: "file-loader?name=fonts/[name].[ext]"
 };
 
@@ -81,7 +81,7 @@ var definePlugin = new webpack.DefinePlugin({
 var htmlDevPlugin = new HtmlWebpackPlugin({
     title: pjson.name,
     filename: "index.html",
-    template: "./src/index.html",
+    template: SOURCE_DIR + "/index.html",
     inject: "body",
     hash: false,
     minify: false
@@ -90,7 +90,7 @@ var htmlDevPlugin = new HtmlWebpackPlugin({
 var htmlProPlugin = new HtmlWebpackPlugin({
     title: pjson.name,
     filename: "index.html",
-    template: "./src/index.html",
+    template: SOURCE_DIR + "/index.html",
     inject: "body",
     hash: false, // used BUNDLE_VERSION
     minify: { // https://github.com/kangax/html-minifier#options-quick-reference
