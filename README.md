@@ -27,4 +27,3 @@ This kit uses better modularized version 6 of the Babel compiler.
 ## TODO
 
 * Replace stupid TODO app with something using async REST, validation and localisation
-* Add react-intl
